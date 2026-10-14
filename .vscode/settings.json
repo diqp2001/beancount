@@ -1,0 +1,40 @@
+{
+    // Interpreter: the project venv (created with: python -m venv .venv, see CLAUDE.md "Setup").
+    "python.defaultInterpreterPath": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+    "python.terminal.activateEnvironment": true,
+    "python.envFile": "${workspaceFolder}/.vscode/python.env",
+
+    // Tests: pytest over the package (pyproject.toml: testpaths = ["beancount"]).
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestArgs": ["beancount"],
+
+    // The editable install rebuilds the C parser on import when lexer.l / grammar.y / *.c change;
+    // win_bison / win_flex / meson / ninja live in the venv Scripts folder.
+    "terminal.integrated.env.windows": {
+        "PATH": "${workspaceFolder}\\.venv\\Scripts;${env:PATH}"
+    },
+
+    // Formatting / linting: ruff (pyproject.toml [tool.ruff]); typing: mypy ([tool.mypy]).
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnSave": false
+    },
+    "mypy-type-checker.args": ["--config-file=${workspaceFolder}/pyproject.toml"],
+
+    "files.associations": {
+        "*.beancount": "beancount",
+        "*.l": "lex",
+        "*.y": "yacc"
+    },
+    "files.exclude": {
+        "**/__pycache__": true,
+        "build": true,
+        ".venv": true
+    },
+    "search.exclude": {
+        "build": true,
+        ".venv": true,
+        "experiments": true
+    }
+}

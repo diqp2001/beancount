@@ -1,0 +1,49 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "bean-check: example ledger",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "beancount.scripts.check",
+            "args": ["${workspaceFolder}/examples/example.beancount"],
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
+            "name": "bean-check: current .beancount file",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "beancount.scripts.check",
+            "args": ["${file}"],
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
+            "name": "bean-doctor: parse current file",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "beancount.scripts.doctor",
+            "args": ["parse", "${file}"],
+            "console": "integratedTerminal",
+            "justMyCode": false
+        },
+        {
+            "name": "bean-format: current file (stdout)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "beancount.scripts.format",
+            "args": ["${file}"],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "pytest: current test file",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "pytest",
+            "args": ["${file}", "-q"],
+            "console": "integratedTerminal",
+            "justMyCode": false
+        }
+    ]
+}

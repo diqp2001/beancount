@@ -1,0 +1,39 @@
+{
+    "version": "2.0.0",
+    "options": {
+        "env": { "PATH": "${workspaceFolder}\\.venv\\Scripts;${env:PATH}" }
+    },
+    "tasks": [
+        {
+            "label": "install (editable, builds the C parser)",
+            "type": "shell",
+            "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe -m pip install --no-build-isolation -Cbuild-dir=build -Csetup-args=-Dtests=enabled -e .",
+            "problemMatcher": []
+        },
+        {
+            "label": "test (pytest beancount)",
+            "type": "shell",
+            "command": "${workspaceFolder}\\.venv\\Scripts\\python.exe -m pytest beancount -q",
+            "group": { "kind": "test", "isDefault": true },
+            "problemMatcher": []
+        },
+        {
+            "label": "test C (meson test)",
+            "type": "shell",
+            "command": "${workspaceFolder}\\.venv\\Scripts\\meson.exe test -C build",
+            "problemMatcher": []
+        },
+        {
+            "label": "lint (ruff check + format check)",
+            "type": "shell",
+            "command": "${workspaceFolder}\\.venv\\Scripts\\ruff.exe check beancount; ${workspaceFolder}\\.venv\\Scripts\\ruff.exe format --check beancount",
+            "problemMatcher": []
+        },
+        {
+            "label": "types (mypy)",
+            "type": "shell",
+            "command": "${workspaceFolder}\\.venv\\Scripts\\mypy.exe .",
+            "problemMatcher": []
+        }
+    ]
+}

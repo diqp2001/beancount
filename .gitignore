@@ -28,3 +28,4 @@ target
 uv.lock
 *.duckdb
 .codex
+.venv
